@@ -2,12 +2,16 @@ import { React, useState } from "react";
 import { Typography } from "@mui/material";
 import { Button } from "@mui/material";
 import { TextField } from "@mui/material";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 const Test = () => {
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
     password: "",
+    subscribe: false,
   });
   const handleChange = (e) => {
     setInputs((prevState) => ({
@@ -25,34 +29,10 @@ const Test = () => {
         Hello World
       </Typography>
 
-      <Button
-        onClick={() => alert("Button Clicked")}
-        color="success"
-        sx={{ margin: 3 }}
-        size="large"
-        variant="contained"
+      <form
+        style={{ display: "flex", flexDirection: "column" }}
+        onSubmit={handleSubmit}
       >
-        First
-      </Button>
-      <Button
-        onClick={() => alert("Button Clicked")}
-        color="error"
-        sx={{ margin: 3 }}
-        size="medium"
-        variant="outlined"
-      >
-        Second
-      </Button>
-      <Button
-        onClick={() => alert("Button Clicked")}
-        color="info"
-        sx={{ margin: 3 }}
-        size="small"
-        variant="text"
-      >
-        Third
-      </Button>
-      <form onSubmit={handleSubmit}>
         <TextField
           name="name"
           value={inputs.name}
@@ -80,6 +60,21 @@ const Test = () => {
           placeholder="Password"
           variant="filled"
         />
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Checkbox
+                onChange={() =>
+                  setInputs((prev) => ({
+                    ...prev,
+                    subscribe: !inputs.subscribe,
+                  }))
+                }
+              />
+            }
+            label="Subscribe to NewsLetter"
+          />
+        </FormGroup>
 
         <Button type="submit">Submit</Button>
       </form>
