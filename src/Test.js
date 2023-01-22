@@ -9,6 +9,9 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormLabel from "@mui/material/FormLabel";
 
 const Test = () => {
   const [inputs, setInputs] = useState({
@@ -16,7 +19,8 @@ const Test = () => {
     email: "",
     password: "",
     subscribe: false,
-    age: "0",
+    age: undefined,
+    gender: "",
   });
   const handleChange = (e) => {
     setInputs((prevState) => ({
@@ -93,6 +97,19 @@ const Test = () => {
             <MenuItem value={20}>Twenty</MenuItem>
             <MenuItem value={30}>Thirty</MenuItem>
           </Select>
+        </FormControl>
+
+        <FormControl>
+          <FormLabel>Gender</FormLabel>
+          <RadioGroup onChange={handleChange} name="gender">
+            <FormControlLabel
+              value="female"
+              control={<Radio />}
+              label="Female"
+            />
+            <FormControlLabel value="male" control={<Radio />} label="Male" />
+            <FormControlLabel value="other" control={<Radio />} label="Other" />
+          </RadioGroup>
         </FormControl>
 
         <Button type="submit">Submit</Button>
