@@ -5,6 +5,10 @@ import { TextField } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const Test = () => {
   const [inputs, setInputs] = useState({
@@ -12,6 +16,7 @@ const Test = () => {
     email: "",
     password: "",
     subscribe: false,
+    age: "0",
   });
   const handleChange = (e) => {
     setInputs((prevState) => ({
@@ -75,6 +80,20 @@ const Test = () => {
             label="Subscribe to NewsLetter"
           />
         </FormGroup>
+
+        <FormControl fullWidth>
+          <InputLabel>Age</InputLabel>
+          <Select
+            name="age"
+            value={inputs.age}
+            label="Age"
+            onChange={handleChange}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
 
         <Button type="submit">Submit</Button>
       </form>
