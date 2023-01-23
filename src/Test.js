@@ -1,7 +1,5 @@
 import { React, useState } from "react";
-import { Typography } from "@mui/material";
-import { Button } from "@mui/material";
-import { TextField } from "@mui/material";
+import { AppBar, Typography, Button, TextField, Toolbar } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -34,7 +32,20 @@ const Test = () => {
   };
   return (
     <div>
-      <Typography variant="h5" sx={{ color: "red" }}>
+      <AppBar>
+        <Toolbar>
+          <Typography>LOGO</Typography>
+          <Button
+            variant="contained"
+            sx={{ marginLeft: "auto" }}
+            color="warning"
+          >
+            Login
+          </Button>
+        </Toolbar>
+      </AppBar>
+
+      <Typography variant="h5" sx={{ color: "red", marginTop: "143px" }}>
         Hello World
       </Typography>
 
