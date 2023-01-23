@@ -1,5 +1,13 @@
 import { React, useState } from "react";
-import { AppBar, Typography, Button, TextField, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  Typography,
+  Button,
+  TextField,
+  Toolbar,
+  Tabs,
+  Tab,
+} from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -20,21 +28,37 @@ const Test = () => {
     age: undefined,
     gender: "",
   });
+
   const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }));
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
   };
+
+  const [value, setValue] = useState();
+
   return (
     <div>
       <AppBar>
         <Toolbar>
           <Typography>LOGO</Typography>
+          <Tabs
+            sx={{ margin: "auto" }}
+            indicatorColor="secondary"
+            textColor="inherit"
+            value={value}
+            onChange={(e, val) => setValue(val)}
+          >
+            <Tab label="First" />
+            <Tab label="Second" />
+            <Tab label="Third" />
+          </Tabs>
           <Button
             variant="contained"
             sx={{ marginLeft: "auto" }}
