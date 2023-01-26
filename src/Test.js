@@ -21,6 +21,10 @@ import {
   ListItemText,
   Collapse,
   ListItemIcon,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Autocomplete,
 } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -37,6 +41,51 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Dialog from "@mui/material/Dialog";
 import { Box, Container } from "@mui/system";
+
+const states = [
+  "Alba",
+  "Arad",
+  "Arges",
+  "Bacau",
+  "Bihor",
+  "Bistrita-Nasaud",
+  "Botosani",
+  "Braila",
+  "Brasov",
+  "Bucuresti",
+  "Buzau",
+  "Calarasi",
+  "Caras-Severin",
+  "Cluj",
+  "Constanta",
+  "Covasna",
+  "Dimbovita",
+  "Dolj",
+  "Galati",
+  "Gorj",
+  "Giurgiu",
+  "Harghita",
+  "Hunedoara",
+  "Ialomita",
+  "Iasi",
+  "Ilfov",
+  "Maramures",
+  "Mehedinti",
+  "Mures",
+  "Neamt",
+  "Olt",
+  "Prahova",
+  "Salaj",
+  "Satu Mare",
+  "Sibiu",
+  "Suceava",
+  "Teleorman",
+  "Timis",
+  "Tulcea",
+  "Vaslui",
+  "Vilcea",
+  "Vrancea",
+];
 
 const array = ["First", "Second", "Third", "Fourth", "Fifth"];
 
@@ -66,6 +115,7 @@ const Test = () => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openList, setOpenList] = useState(false);
+  const [according, setAccording] = useState("");
 
   return (
     <div>
@@ -261,6 +311,40 @@ const Test = () => {
             </List>
           </Collapse>
         </Box>
+      </Container>
+
+      <Box>
+        <Accordion
+          expanded={according === "test1"}
+          onChange={() => setAccording("test1")}
+        >
+          <AccordionSummary expandIcon={">"}>
+            <Typography>Test 1</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>My name is Andrei and I learn MUi</Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion
+          expanded={according === "test2"}
+          onChange={() => setAccording("test2")}
+        >
+          <AccordionSummary expandIcon={">"}>
+            <Typography>Test 2</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>My name is Andrei and I learn Accordion</Typography>
+          </AccordionDetails>
+        </Accordion>
+      </Box>
+
+      <Container maxWidth="md" sx={{ marginTop: 5 }}>
+        <Autocomplete
+          options={states}
+          renderInput={(params) => (
+            <TextField {...params} label="List of States" />
+          )}
+        />
       </Container>
     </div>
   );
