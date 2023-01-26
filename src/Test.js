@@ -14,6 +14,13 @@ import {
   DialogContentText,
   DialogActions,
   Modal,
+  Link,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Collapse,
+  ListItemIcon,
 } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -29,6 +36,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Dialog from "@mui/material/Dialog";
+import { Box, Container } from "@mui/system";
+
+const array = ["First", "Second", "Third", "Fourth", "Fifth"];
 
 const Test = () => {
   const [inputs, setInputs] = useState({
@@ -55,6 +65,8 @@ const Test = () => {
   const [value, setValue] = useState();
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [openList, setOpenList] = useState(false);
+
   return (
     <div>
       <AppBar>
@@ -191,30 +203,65 @@ const Test = () => {
         </Card>
       </Modal>
 
-      <Card sx={{ maxWidth: 345, marginTop: 5 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://post.healthline.com/wp-content/uploads/2021/06/lizard-iguana-1200x628-facebook.jpg"
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-        </CardActions>
-      </Card>
+      <Container maxWidth="md">
+        <Card sx={{ maxWidth: 345, marginTop: 5, margin: "auto" }}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              height="140"
+              image="https://post.healthline.com/wp-content/uploads/2021/06/lizard-iguana-1200x628-facebook.jpg"
+              alt="green iguana"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Lizard
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Lizards are a widespread group of squamate reptiles, with over
+                6,000 species, ranging across all continents except Antarctica
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Button size="small" color="primary">
+              Share
+            </Button>
+            <Link
+              sx={{ margin: "auto" }}
+              variant="h4"
+              color="secondary"
+              underline="hover"
+              href="www.google.ro"
+            >
+              Google
+            </Link>
+          </CardActions>
+        </Card>
+      </Container>
+
+      <Container>
+        <Box>
+          <List>
+            <ListItem divider>
+              <ListItemButton onClick={() => setOpenList(true)}>
+                <ListItemIcon>{">"}</ListItemIcon>
+                <ListItemText primary={"Expand List"} />
+              </ListItemButton>
+            </ListItem>
+          </List>
+          <Collapse in={openList}>
+            <List sx={{ marginLeft: 10, background: "grey" }}>
+              {array.map((listElm) => (
+                <ListItem divider>
+                  <ListItemButton onClick={() => setOpenList(false)}>
+                    <ListItemText primary={listElm} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Collapse>
+        </Box>
+      </Container>
     </div>
   );
 };
