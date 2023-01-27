@@ -25,6 +25,14 @@ import {
   AccordionSummary,
   AccordionDetails,
   Autocomplete,
+  Drawer,
+  Snackbar,
+  Alert,
+  CircularProgress,
+  LinearProgress,
+  Rating,
+  ImageList,
+  ImageListItem,
 } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -87,6 +95,67 @@ const states = [
   "Vrancea",
 ];
 
+const itemData = [
+  {
+    img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
+    title: "Breakfast",
+    rows: 2,
+    cols: 2,
+  },
+  {
+    img: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d",
+    title: "Burger",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1522770179533-24471fcdba45",
+    title: "Camera",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c",
+    title: "Coffee",
+    cols: 2,
+  },
+  {
+    img: "https://images.unsplash.com/photo-1533827432537-70133748f5c8",
+    title: "Hats",
+    cols: 2,
+  },
+  {
+    img: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62",
+    title: "Honey",
+    author: "@arwinneil",
+    rows: 2,
+    cols: 2,
+  },
+  {
+    img: "https://images.unsplash.com/photo-1516802273409-68526ee1bdd6",
+    title: "Basketball",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
+    title: "Fern",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1597645587822-e99fa5d45d25",
+    title: "Mushrooms",
+    rows: 2,
+    cols: 2,
+  },
+  {
+    img: "https://images.unsplash.com/photo-1567306301408-9b74779a11af",
+    title: "Tomato basil",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1471357674240-e1a485acb3e1",
+    title: "Sea star",
+  },
+  {
+    img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+    title: "Bike",
+    cols: 2,
+  },
+];
+
 const array = ["First", "Second", "Third", "Fourth", "Fifth"];
 
 const Test = () => {
@@ -117,10 +186,14 @@ const Test = () => {
   const [openList, setOpenList] = useState(false);
   const [according, setAccording] = useState("");
 
+  const arrOptions = ["Links", "Balance", "Alert"];
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openSnackBar, setOpenSnackBar] = useState(true);
   return (
     <div>
       <AppBar>
         <Toolbar>
+          <CircularProgress color="error" />
           <Typography>LOGO</Typography>
           <Tabs
             sx={{ margin: "auto" }}
@@ -133,6 +206,27 @@ const Test = () => {
             <Tab label="Second" />
             <Tab label="Third" />
           </Tabs>
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => setOpenDrawer(true)}
+          >
+            Drawer
+          </Button>
+          <Drawer
+            anchor="right"
+            open={openDrawer}
+            onClose={() => setOpenDrawer(false)}
+          >
+            <List>
+              {arrOptions.map((elm) => (
+                <ListItemButton onClick={() => setOpenDrawer(false)}>
+                  <ListItemText primary={elm} />
+                </ListItemButton>
+              ))}
+            </List>
+          </Drawer>
+
           <Button
             onClick={() => setOpen(true)}
             variant="contained"
@@ -157,11 +251,20 @@ const Test = () => {
             </DialogActions>
           </Dialog>
         </Toolbar>
+        <LinearProgress color="inherit" />
       </AppBar>
 
-      <Typography variant="h5" sx={{ color: "red", marginTop: "100px" }}>
-        Hello World
-      </Typography>
+      <Box sx={{ marginTop: 10 }}>
+        <Rating
+          precision={0.5}
+          size="large"
+          value={value}
+          onChange={(e, val) => setValue(val)}
+        />
+        <Typography variant="h5" sx={{ color: "red" }}>
+          Rated {value !== undefined ? value : 0} Stars
+        </Typography>
+      </Box>
 
       <Modal open={openModal} onClose={() => setOpenModal(false)}>
         <Card
@@ -322,7 +425,13 @@ const Test = () => {
             <Typography>Test 1</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>My name is Andrei and I learn MUi</Typography>
+            <ImageList sx={{ width: 200, height: 200 }} cols={3}>
+              {itemData.map((image, index) => (
+                <ImageListItem>
+                  <img src={image.img} alt={image.title} loading="lazy" />
+                </ImageListItem>
+              ))}
+            </ImageList>
           </AccordionDetails>
         </Accordion>
         <Accordion
@@ -346,6 +455,15 @@ const Test = () => {
           )}
         />
       </Container>
+      <Box>
+        <Snackbar
+          onClose={() => setOpenSnackBar(false)}
+          autoHideDuration={8000}
+          open={openSnackBar}
+        >
+          <Alert severity="success">This is an Alert from Snackbar</Alert>
+        </Snackbar>
+      </Box>
     </div>
   );
 };
