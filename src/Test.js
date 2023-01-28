@@ -33,6 +33,7 @@ import {
   Rating,
   ImageList,
   ImageListItem,
+  styled,
 } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -48,8 +49,16 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Dialog from "@mui/material/Dialog";
-import { Box, Container } from "@mui/system";
+import { Box, Container, useTheme } from "@mui/system";
 import { DataGrid } from "@mui/x-data-grid";
+
+const CustomizedTypography = styled(Typography)`
+  color: #000055;
+  :hover {
+    color: #75125c;
+    background: #afafaf;
+  }
+`;
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
@@ -204,6 +213,9 @@ const itemData = [
 const array = ["First", "Second", "Third", "Fourth", "Fifth"];
 
 const Test = () => {
+  const theme = useTheme();
+  console.log(theme);
+
   const [inputs, setInputs] = useState({
     name: "",
     email: "",
@@ -234,6 +246,7 @@ const Test = () => {
   const arrOptions = ["Links", "Balance", "Alert"];
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openSnackBar, setOpenSnackBar] = useState(true);
+
   return (
     <div>
       <AppBar>
@@ -411,9 +424,9 @@ const Test = () => {
               alt="green iguana"
             />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <CustomizedTypography gutterBottom variant="h5" component="div">
                 Lizard
-              </Typography>
+              </CustomizedTypography>
               <Typography variant="body2" color="text.secondary">
                 Lizards are a widespread group of squamate reptiles, with over
                 6,000 species, ranging across all continents except Antarctica
@@ -473,7 +486,12 @@ const Test = () => {
             <ImageList sx={{ width: 200, height: 200 }} cols={3}>
               {itemData.map((image, index) => (
                 <ImageListItem>
-                  <img src={image.img} alt={image.title} loading="lazy" />
+                  <img
+                    src={image.img}
+                    alt={image.title}
+                    key={index}
+                    loading="lazy"
+                  />
                 </ImageListItem>
               ))}
             </ImageList>
@@ -510,7 +528,7 @@ const Test = () => {
         </Snackbar>
       </Box>
 
-      <Box height={400} width={800} sx={{ marginTop: 5 }}>
+      <Box sx={{ marginTop: 5, height: 300, width: "100%" }}>
         <DataGrid
           onCellEditCommit={(params) => console.log(params)}
           columns={columns}
