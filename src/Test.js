@@ -34,6 +34,7 @@ import {
   ImageList,
   ImageListItem,
   styled,
+  Grid,
 } from "@mui/material";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -311,7 +312,6 @@ const Test = () => {
         </Toolbar>
         <LinearProgress color="inherit" />
       </AppBar>
-
       <Box sx={{ marginTop: 10 }}>
         <Rating
           precision={0.5}
@@ -323,7 +323,6 @@ const Test = () => {
           Rated {value !== undefined ? value : 0} Stars
         </Typography>
       </Box>
-
       <Modal open={openModal} onClose={() => setOpenModal(false)}>
         <Card
           sx={{ maxWidth: 500 }}
@@ -413,7 +412,6 @@ const Test = () => {
           </Button>
         </Card>
       </Modal>
-
       <Container maxWidth="md">
         <Card sx={{ maxWidth: 345, marginTop: 5, margin: "auto" }}>
           <CardActionArea>
@@ -449,7 +447,6 @@ const Test = () => {
           </CardActions>
         </Card>
       </Container>
-
       <Container>
         <Box>
           <List>
@@ -473,7 +470,6 @@ const Test = () => {
           </Collapse>
         </Box>
       </Container>
-
       <Box>
         <Accordion
           expanded={according === "test1"}
@@ -509,8 +505,78 @@ const Test = () => {
           </AccordionDetails>
         </Accordion>
       </Box>
-
-      <Container maxWidth="md" sx={{ marginTop: 5 }}>
+      <Box sx={{ marginTop: 5 }}>
+        <Grid container spacing={3}>
+          <Grid
+            sx={{ background: "yellow" }}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={2}
+          >
+            Item{" "}
+          </Grid>
+          <Grid
+            sx={{ background: "yellow" }}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={2}
+          >
+            Item{" "}
+          </Grid>
+          <Grid
+            sx={{ background: "yellow" }}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={2}
+          >
+            Item{" "}
+          </Grid>
+          <Grid
+            sx={{ background: "yellow" }}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={2}
+          >
+            Item{" "}
+          </Grid>
+          <Grid
+            sx={{ background: "yellow" }}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={2}
+          >
+            Item{" "}
+          </Grid>
+          <Grid
+            sx={{ background: "yellow" }}
+            item
+            xs={12}
+            sm={6}
+            md={4}
+            lg={3}
+            xl={2}
+          >
+            Item{" "}
+          </Grid>
+        </Grid>
+      </Box>
+      ;
+      <Container maxWidth="md" sx={{ marginTop: 1 }}>
         <Autocomplete
           options={states}
           renderInput={(params) => (
@@ -527,7 +593,6 @@ const Test = () => {
           <Alert severity="success">This is an Alert from Snackbar</Alert>
         </Snackbar>
       </Box>
-
       <Box sx={{ marginTop: 5, height: 300, width: "100%" }}>
         <DataGrid
           onCellEditCommit={(params) => console.log(params)}
