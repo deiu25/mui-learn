@@ -1,9 +1,12 @@
-import Test from "./Test";
+import Navbar from "./components/Navbar";
+// import Test from "./Test";
+const linksArray = ["Products", "Services", "Overview", "Contact Us"];
 
 function App() {
   return (
     <div>
-      <Test />
+      {/* <Test /> */}
+      <Navbar links={linksArray} />
     </div>
   );
 }
